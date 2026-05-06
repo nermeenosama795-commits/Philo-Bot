@@ -85,7 +85,7 @@ def build_rag_chain():
     llm = ChatGoogleGenerativeAI(
         model="gemini-2.5-flash",
         temperature=0.2,
-        google_api_key="AIzaSyC5bSQMEqNer6E27QUbDTq-9kHW-UL35Rc"
+        google_api_key=st.secrets["GOOGLE_API_KEY"]
     )
 
     # ✅ Fix 1: these were accidentally outside the function — now properly indented
@@ -116,7 +116,6 @@ if "messages" not in st.session_state:
 
 # --- Step 5: Run the App ---
 rag_chain = build_rag_chain()
-
 # عرض الرسائل السابقة
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
